@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using JagfxScsTelemetry.Common.ScsTelemetryExtended;
+using Microsoft.AspNetCore.SignalR;
 using SCSSdkClient;
 using SCSSdkClient.Object;
 
 namespace JagfxScsTelemetry.Feature.TelemetryDataReader;
 
-public class BackgroundService( IHubContext< Hub > hubContext ) : Microsoft.Extensions.Hosting.BackgroundService {
+public class BackgroundService(
+    IHubContext< Hub > hubContext,
+    IDataExtender      extender
+) : Microsoft.Extensions.Hosting.BackgroundService {
     private const string SHARED_MEMORY_MAP = "Local\\SCSTelemetry";
     private const int    TIME_MS           = 100;
 
@@ -26,9 +30,11 @@ public class BackgroundService( IHubContext< Hub > hubContext ) : Microsoft.Exte
     }
 
     private void DoWork() {
-        SCSTelemetry scsTelemetry = _sharedMemory.Update< SCSTelemetry >();
+        SCSTelemetry          scsTelemetry         = _sharedMemory.Update< SCSTelemetry >();
+        IScsTelemetryExtended scsTelemetryExtended = extender.Extend( scsTelemetry );
 
-        hubContext.Clients.All.SendAsync( ClientMethods.TELEMETRY_RAW, scsTelemetry );
+        hubContext.Clients.All.SendAsync( ClientMethods.TELEMETRY_RAW,      scsTelemetry );
+        hubContext.Clients.All.SendAsync( ClientMethods.TELEMETRY_EXTENDED, scsTelemetryExtended );
 
         // _logger.LogInformation("Timed Hosted Service is working. Count: {Count}", count);
     }

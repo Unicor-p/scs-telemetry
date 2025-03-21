@@ -7,6 +7,7 @@ builder.Services.AddCors( options => {
 } );
 builder.Services.AddSignalR();
 builder.Services.AddHostedService< TelemetryDataReader.BackgroundService >();
+builder.Services.AddSingleton< TelemetryDataReader.IDataExtender, TelemetryDataReader.DataExtender >();
 
 // Start application
 WebApplication app = builder.Build();

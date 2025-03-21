@@ -9,10 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Common\"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\SCSSdkClient\SCSSdkClient.csproj"/>
     </ItemGroup>
 
