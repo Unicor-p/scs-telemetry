@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <AssemblyName>JagfxScsTelemetry</AssemblyName>
+        <RootNamespace>JagfxScsTelemetry</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Folder Include="Common\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\SCSSdkClient\SCSSdkClient.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="TypeGen" Version="6.0.2"/>
+    </ItemGroup>
+
+</Project>

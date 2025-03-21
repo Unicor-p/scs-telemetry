@@ -1,0 +1,6 @@
+@JagfxScsTelemetrey_HostAddress = http://localhost:5164
+
+GET {{JagfxScsTelemetrey_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
