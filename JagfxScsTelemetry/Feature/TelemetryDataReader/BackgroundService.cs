@@ -1,4 +1,4 @@
-﻿using JagfxScsTelemetry.Common.ScsTelemetryExtended;
+﻿using JagfxScsTelemetry.Common.ScsTelemetryExtended.Dto;
 using Microsoft.AspNetCore.SignalR;
 using SCSSdkClient;
 using SCSSdkClient.Object;
